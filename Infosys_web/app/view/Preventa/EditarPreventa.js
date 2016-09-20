@@ -346,7 +346,8 @@ Ext.define('Infosys_web.view.Preventa.EditarPreventa', {
                                 width: 120,
                                 allowBlank: true,
                                 action: 'buscarprecios2',
-                                itemId: 'buscarprec'
+                                itemId: 'buscarprec',
+                                hidden: true
                             },{xtype: 'splitter'},
                             {
                                 xtype: 'textfield',
@@ -541,7 +542,9 @@ Ext.define('Infosys_web.view.Preventa.EditarPreventa', {
                             iconCls: 'icon-save',
                             scale: 'large',
                             action: 'grabarpreventa2',
-                            text: 'Grabar / Emitir'
+                            itemId: 'grabarpreventaId',
+                            text: 'Grabar / Emitir',
+                            disabled : false
                         }
                     ]
                 }

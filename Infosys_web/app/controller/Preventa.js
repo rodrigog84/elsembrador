@@ -1085,6 +1085,8 @@ Ext.define('Infosys_web.controller.Preventa', {
     grabarpreventa2: function(){
 
         var viewIngresa = this.getPreventaeditar();
+        var bolEnable = true;
+        viewIngresa.down('#grabarpreventaId').setDisabled(bolEnable);        
         var numeroticket = viewIngresa.down('#ticketId').getValue();
         var idticket = viewIngresa.down('#idId').getValue();
         var idtipo = viewIngresa.down('#tipoDocumento2Id').getValue();
@@ -2613,12 +2615,15 @@ Ext.define('Infosys_web.controller.Preventa', {
     grabarpreventa: function(){
 
         var viewIngresa = this.getPreventaingresar();
+        var bolEnable = true;
+        viewIngresa.down('#grabarpreventaId').setDisabled(bolEnable);        
         var numeroticket = viewIngresa.down('#ticketId').getValue();
         var idtipo = viewIngresa.down('#tipoDocumento2Id').getValue();
         var idcliente = viewIngresa.down('#id_cliente').getValue();
         var sucursal = viewIngresa.down('#id_sucursalID').getValue();
         var idpago = viewIngresa.down('#tipocondpagoId').getValue();
         var vender = viewIngresa.down('#tipoVendedorId').getValue();
+        var direccion = viewIngresa.down('#direccionId').getValue();
                 
         if(!vender){
             Ext.Msg.alert('Seleccione Vendedor');
@@ -2658,6 +2663,7 @@ Ext.define('Infosys_web.controller.Preventa', {
                 idcliente: idcliente,
                 items: Ext.JSON.encode(dataItems),
                 vendedor : vendedor,
+                direccion: direccion,
                 sucursal: sucursal,
                 observa: observa,
                 idtipo : idtipo,
