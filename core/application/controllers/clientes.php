@@ -236,7 +236,7 @@ class Clientes extends CI_Controller {
 			$query = $this->db->query('SELECT acc.*, c.nombre as nombre_ciudad, com.nombre as nombre_comuna,
 			ven.nombre as nombre_vendedor, g.nombre as giro, con.nombre as nom_id_pago FROM clientes acc
 			left join ciudad c on (acc.id_ciudad = c.id)
-			left join cod_activ_econ g on (acc.id_giro = g.id)
+			left join cod_activ_econ g on (acc.id_giro = g.codigo)
 			left join comuna com on (acc.id_comuna = com.id)
 			left join vendedores ven on (acc.id_vendedor = ven.id)
 			left join cond_pago con on (acc.id_pago = con.id)
@@ -264,7 +264,7 @@ class Clientes extends CI_Controller {
 			$query = $this->db->query('SELECT acc.*, c.nombre as nombre_ciudad, com.nombre as nombre_comuna,
 			ven.nombre as nombre_vendedor, g.nombre as giro, con.nombre as nom_id_pago FROM clientes acc
 			left join ciudad c on (acc.id_ciudad = c.id)
-			left join cod_activ_econ g on (acc.id_giro = g.id)
+			left join cod_activ_econ g on (acc.id_giro = g.codigo)
 			left join comuna com on (acc.id_comuna = com.id)
 			left join vendedores ven on (acc.id_vendedor = ven.id)
 			left join cond_pago con on (acc.id_pago = con.id)
@@ -288,7 +288,7 @@ class Clientes extends CI_Controller {
 			$query = $this->db->query('SELECT acc.*, c.nombre as nombre_ciudad, com.nombre as nombre_comuna,
 			ven.nombre as nombre_vendedor, g.nombre as giro, con.nombre as nom_id_pago FROM clientes acc
 			left join ciudad c on (acc.id_ciudad = c.id)
-			left join cod_activ_econ g on (acc.id_giro = g.id)
+			left join cod_activ_econ g on (acc.id_giro = g.codigo)
 			left join comuna com on (acc.id_comuna = com.id)
 			left join vendedores ven on (acc.id_vendedor = ven.id)
 			left join cond_pago con on (acc.id_pago = con.id) 
@@ -301,7 +301,7 @@ class Clientes extends CI_Controller {
 			$query = $this->db->query('SELECT acc.*, c.nombre as nombre_ciudad, com.nombre as nombre_comuna,
 			ven.nombre as nombre_vendedor, g.nombre as giro, con.nombre as nom_id_pago FROM clientes acc
 			left join ciudad c on (acc.id_ciudad = c.id)
-			left join cod_activ_econ g on (acc.id_giro = g.id)
+			left join cod_activ_econ g on (acc.id_giro = g.codigo)
 			left join comuna com on (acc.id_comuna = com.id)
 			left join vendedores ven on (acc.id_vendedor = ven.id)
 			left join cond_pago con on (acc.id_pago = con.id) 
