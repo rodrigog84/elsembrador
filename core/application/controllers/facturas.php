@@ -792,7 +792,9 @@ class Facturas extends CI_Controller {
 
 
 
-	public function ver_dte($idfactura){
+	public function ver_dte($idfactura,$tipo = 'sii'){
+
+		$ruta = $tipo == 'cliente' ? 'dte_cliente' : 'dte';
 		$this->load->model('facturaelectronica');
 		$dte = $this->facturaelectronica->datos_dte($idfactura);
 
@@ -803,12 +805,14 @@ class Facturas extends CI_Controller {
 		}
 
 
-		$path_archivo = "./facturacion_electronica/dte/".$dte->path_dte;
-		$data_archivo = basename($path_archivo.$dte->archivo_dte);
+		$nombre_archivo = $tipo == 'cliente' ? $dte->archivo_dte_cliente : $dte->archivo_dte;
+ 		$path_archivo = "./facturacion_electronica/" . $ruta . "/".$dte->path_dte;
+ 		$data_archivo = basename($path_archivo.$nombre_archivo);
+
 		header('Content-Type: text/plain');
 		header('Content-Disposition: attachment; filename=' . $data_archivo);
-		header('Content-Length: ' . filesize($path_archivo.$dte->archivo_dte));
-		readfile($path_archivo.$dte->archivo_dte);			
+		header('Content-Length: ' . filesize($path_archivo.$nombre_archivo));
+ 		readfile($path_archivo.$nombre_archivo);				
 	 }
 
 
@@ -2848,7 +2852,7 @@ public function cargacontribuyentes(){
 				$i++;
 			}
 
-
+			$rutCliente = substr($datos_empresa_factura->rut_cliente,0,strlen($datos_empresa_factura->rut_cliente) - 1)."-".substr($datos_empresa_factura->rut_cliente,-1);
 			// datos
 			$factura = [
 			    'Encabezado' => [
@@ -2866,7 +2870,7 @@ public function cargacontribuyentes(){
 			            'CmnaOrigen' => substr($empresa->comuna_origen,0,20), //LARGO DE COMUNA DE ORIGEN NO PUEDE SER SUPERIOR A 20 CARACTERES
 			        ],
 			        'Receptor' => [
-			            'RUTRecep' => substr($datos_empresa_factura->rut_cliente,0,strlen($datos_empresa_factura->rut_cliente) - 1)."-".substr($datos_empresa_factura->rut_cliente,-1),
+			            'RUTRecep' => $rutCliente,
 			            'RznSocRecep' => substr($datos_empresa_factura->nombre_cliente,0,100), //LARGO DE RAZON SOCIAL NO PUEDE SER SUPERIOR A 100 CARACTERES
 			            'GiroRecep' => substr($datos_empresa_factura->giro,0,35),  //LARGO DEL GIRO NO PUEDE SER SUPERIOR A 40 CARACTERES
 			            'DirRecep' => substr($datos_empresa_factura->direccion,0,70), //LARGO DE DIRECCION NO PUEDE SER SUPERIOR A 70 CARACTERES
@@ -2890,6 +2894,15 @@ public function cargacontribuyentes(){
 			    'FchResol' => $empresa->fec_resolucion,
 			    'NroResol' => $empresa->nro_resolucion
 			];		
+
+
+			//FchResol y NroResol deben cambiar con los datos reales de producción
+			$caratula_cliente = [
+			    //'RutEnvia' => '11222333-4', // se obtiene de la firma
+			    'RutReceptor' => $rutCliente,
+			    'FchResol' => $empresa->fec_resolucion,
+			    'NroResol' => $empresa->nro_resolucion
+			];
 
 
 			//exit;
@@ -2917,16 +2930,20 @@ public function cargacontribuyentes(){
 				$track_id = 0;
 			    $xml_dte = $EnvioDTE->generar();
 
+
+			    #GENERACIÓN DTE CLIENTE
+				$EnvioDTE_CLI = new \sasco\LibreDTE\Sii\EnvioDte();
+				$EnvioDTE_CLI->agregar($DTE);
+				$EnvioDTE_CLI->setFirma($Firma);
+				$EnvioDTE_CLI->setCaratula($caratula_cliente);
+				$xml_dte_cliente = $EnvioDTE_CLI->generar();
+
+
 			    $tipo_envio = $this->facturaelectronica->busca_parametro_fe('envio_sii'); //ver si está configurado para envío manual o automático
 
-				$nombre_dte = $numfactura."_". $tipo_caf ."_".$idfactura."_".date("His").".xml"; // nombre archivo
-				$path = date('Ym').'/'; // ruta guardado
-				if(!file_exists('./facturacion_electronica/dte/'.$path)){
-					mkdir('./facturacion_electronica/dte/'.$path,0777,true);
-				}				
-				$f_archivo = fopen('./facturacion_electronica/dte/'.$path.$nombre_dte,'w');
-				fwrite($f_archivo,$xml_dte);
-				fclose($f_archivo);
+			    $dte = $this->facturaelectronica->crea_archivo_dte($xml_dte,$idfactura,$tipo_caf,'sii');
+			    $dte_cliente = $this->facturaelectronica->crea_archivo_dte($xml_dte_cliente,$idfactura,$tipo_caf,'cliente');
+
 
 			    if($tipo_envio == 'automatico'){
 				    $track_id = $EnvioDTE->enviar();
@@ -2934,11 +2951,13 @@ public function cargacontribuyentes(){
 
 			    $this->db->where('f.folio', $numfactura);
 			    $this->db->where('c.tipo_caf', $tipo_caf);
-				$this->db->update('folios_caf f inner join caf c on f.idcaf = c.id',array('dte' => $xml_dte,
+				$this->db->update('folios_caf f inner join caf c on f.idcaf = c.id',array('dte' => $dte['xml_dte'],
+																						  'dte_cliente' => $dte_cliente['xml_dte'],
 																						  'estado' => 'O',
 																						  'idfactura' => $idfactura,
-																						  'path_dte' => $path,
-																						  'archivo_dte' => $nombre_dte,
+																						  'path_dte' => $dte['path'],
+																						  'archivo_dte' => $dte['nombre_dte'],
+																						  'archivo_dte_cliente' => $dte_cliente['nombre_dte'],
 																						  'trackid' => $track_id
 																						  )); 
 
@@ -4745,12 +4764,11 @@ font-family: Arial, Helvetica, sans-serif;
 		  <tr>
 		   <td width="197px"><img src="http://angus.agricultorestalca.cl/elsembrador/Infosys_web/resources/images/logo_empresa.jpg" width="150" height="136" /></td>
 		    <td width="493px" style="font-size: 14px;text-align:center;vertical-align:text-top"	>
-		    <p>SOC COMERCIAL EL SEMBRADOR LIMITADA</p>
-		    <p>RUT:77.733.670-3</p>
-		    <p>Delicias Norte  531 Parral - Chile</p>
-		    <p>VENTA AL POR MENOR DE ARTICULOS DE FERRETERIA</p>
-		    <p>Fonos: (73)2 </p>
-		    <p>Correo Electronico : </p>
+		    <p>VIBRADOS CHILE LTDA.</p>
+		    <p>RUT:77.748.100-2</p>
+		    <p>Cienfuegos # 1595 San Javier - Chile</p>
+		    <p>Fonos: (73)2 321100</p>
+		    <p>Correo Electronico : info@vibradoschile.cl</p>
 		    </td>
 		    <td width="296px" style="font-size: 16px;text-align:left;vertical-align:text-top"	>
 		          <p>FECHA EMISION : '.date('d/m/Y').'</p>
@@ -5076,14 +5094,13 @@ font-family: Arial, Helvetica, sans-serif;
 		<body>
 		<table width="987px" height="602" border="0">
 		  <tr>
-		   <td width="197px"><img src="http://angus.agricultorestalca.cl/elsembrador/Infosys_web/resources/images/logo_empresa.jpg" width="150" height="136" /></td>
+		  <td width="197px"><img src="http://angus.agricultorestalca.cl/elsembrador/Infosys_web/resources/images/logo_empresa.jpg" width="150" height="136" /></td>
 		    <td width="493px" style="font-size: 14px;text-align:center;vertical-align:text-top"	>
-		    <p>SOC COMERCIAL EL SEMBRADOR LIMITADA</p>
-		    <p>RUT:77.733.670-3</p>
-		    <p>Delicias Norte  531 Parral - Chile</p>
-		    <p>VENTA AL POR MENOR DE ARTICULOS DE FERRETERIA</p>
-		    <p>Fonos: (73)2 </p>
-		    <p>Correo Electronico : </p>
+		    <p>VIBRADOS CHILE LTDA.</p>
+		    <p>RUT:77.748.100-2</p>
+		    <p>Cienfuegos # 1595 San Javier - Chile</p>
+		    <p>Fonos: (73)2 321100</p>
+		    <p>Correo Electronico : info@vibradoschile.cl</p>
 		    </td>
 		    <td width="296px" style="font-size: 16px;text-align:left;vertical-align:text-top"	>
 		          <p>FECHA EMISION : '.date('d/m/Y').'</p>
