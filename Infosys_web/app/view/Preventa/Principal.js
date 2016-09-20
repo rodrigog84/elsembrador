@@ -146,7 +146,8 @@ Ext.define('Infosys_web.view.Preventa.Principal' ,{
                 xtype: 'button',
                 iconCls: 'icon-delete',
                 action: 'eliminarpreventa',
-                text : 'Eliminar'
+                text : 'Eliminar',
+                hidden: true
             },'->',{
                 xtype: 'combo',
                 align: 'center',

@@ -187,7 +187,7 @@ Ext.define('Infosys_web.view.Preventa.Preventa', {
                                             itemId: 'direccionId',
                                             name : 'direccion',
                                             //disabled : true,                                            
-                                            readOnly: true
+                                            //readOnly: true
                                         },{xtype: 'splitter'},{
                                             xtype: 'button',
                                             text: 'Sucursal',
@@ -368,7 +368,8 @@ Ext.define('Infosys_web.view.Preventa.Preventa', {
                                 width: 120,
                                 allowBlank: true,
                                 action: 'buscarprecios',
-                                itemId: 'buscarprec'
+                                itemId: 'buscarprec',
+                                hidden: true
                             },{xtype: 'splitter'},
                             {
                                 xtype: 'textfield',
@@ -572,8 +573,11 @@ Ext.define('Infosys_web.view.Preventa.Preventa', {
                             xtype: 'button',
                             iconCls: 'icon-save',
                             scale: 'large',
+                            itemId: 'grabarpreventaId',
                             action: 'grabarpreventa',
-                            text: 'Grabar / Emitir'
+                            text: 'Grabar / Emitir',
+                            disabled : false
+
                         }
                     ]
                 }

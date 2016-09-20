@@ -56,14 +56,14 @@ class Cotizaciones extends CI_Controller {
 		<table width="987px" height="602" border="0">
 		  <tr>
 		   <tr>
-		    <td width="150px"><img src="http://localhost/vibrados_web/Infosys_web/resources/images/logomuni.jpg" width="300" height="200" /></td>
-		    <td width="193px" style="font-size: 14px;text-align:center;vertical-align:text-top"	>
-		    <p></p>
-		    <p></p>
-		    <p></p>
-		    <p></p>
-		    <p></p>
-		    </td>
+		    <td width="197px"><img src="http://angus.agricultorestalca.cl/elsembrador/Infosys_web/resources/images/logo_empresa.jpg" width="150" height="136" /></td>
+		    <td width="493px" style="font-size: 14px;text-align:center;vertical-align:text-top"	>
+		    <p>SOC COMERCIAL EL SEMBRADOR LIMITADA</p>
+		    <p>RUT:77.733.670-3</p>
+		    <p>Delicias Norte  531 Parral - Chile</p>
+		    <p>VENTA AL POR MENOR DE ARTICULOS DE FERRETERIA</p>
+		    <p>Fonos: (73)2 </p>
+		    <p>Correo Electronico : </p>
 		    </td>
 		    <td width="210px" style="font-size: 20px;text-align:left;vertical-align:text-top"	>
 		          <p>COTIZACION N°: '.$codigo.'</p>
@@ -642,13 +642,14 @@ class Cotizaciones extends CI_Controller {
 		<table width="987px" height="602" border="0">
 		  <tr>
 		   <tr>
-		    <td width="197px"><img src="http://localhost/vibrados_web/Infosys_web/resources/images/logo_empresa.jpg" width="150" height="136" /></td>
+		    <td width="197px"><img src="http://angus.agricultorestalca.cl/elsembrador/Infosys_web/resources/images/logo_empresa.jpg" width="150" height="136" /></td>
 		    <td width="493px" style="font-size: 14px;text-align:center;vertical-align:text-top"	>
-		    <p>VIBRADOS CHILE LTDA.</p>
-		    <p>RUT:77.748.100-2</p>
-		    <p>Cienfuegos # 1595 San Javier - Chile</p>
-		    <p>Fonos: (73)2 321100</p>
-		    <p>Correo Electronico : info@vibradoschile.cl</p>
+		    <p>SOC COMERCIAL EL SEMBRADOR LIMITADA</p>
+		    <p>RUT:77.733.670-3</p>
+		    <p>Delicias Norte  531 Parral - Chile</p>
+		    <p>VENTA AL POR MENOR DE ARTICULOS DE FERRETERIA</p>
+		    <p>Fonos: (73)2 </p>
+		    <p>Correo Electronico : </p>
 		    </td>
 		    </td>
 		    <td width="296px" style="font-size: 16px;text-align:left;vertical-align:text-top"	>
@@ -885,13 +886,14 @@ class Cotizaciones extends CI_Controller {
 		<table width="987px" height="602" border="0">
 		  <tr>
 		   <tr>
-		    <td width="197px"><img src="http://92.168.1.100/vibrados_web/Infosys_web/resources/images/logo_empresa.jpg" width="150" height="136" /></td>
+		     <td width="197px"><img src="http://angus.agricultorestalca.cl/elsembrador/Infosys_web/resources/images/logo_empresa.jpg" width="150" height="136" /></td>
 		    <td width="493px" style="font-size: 14px;text-align:center;vertical-align:text-top"	>
-		    <p>VIBRADOS CHILE LTDA.</p>
-		    <p>RUT:77.748.100-2</p>
-		    <p>Cienfuegos # 1595 San Javier - Chile</p>
-		    <p>Fonos: (73)2 321100</p>
-		    <p>Correo Electronico : info@vibradoschile.cl</p>
+		    <p>SOC COMERCIAL EL SEMBRADOR LIMITADA</p>
+		    <p>RUT:77.733.670-3</p>
+		    <p>Delicias Norte  531 Parral - Chile</p>
+		    <p>VENTA AL POR MENOR DE ARTICULOS DE FERRETERIA</p>
+		    <p>Fonos: (73)2 </p>
+		    <p>Correo Electronico : </p>
 		    </td>
 		    <td width="296px" style="font-size: 16px;text-align:left;vertical-align:text-top"	>
 		          <p>COTIZACION N°: '.$codigo.'</p>
@@ -1142,13 +1144,14 @@ class Cotizaciones extends CI_Controller {
 		<table width="987px" height="602" border="0">
 		  <tr>
 		   <tr>
-		    <td width="150px"><img src="http://localhost/vibrados_web/Infosys_web/resources/images/logomuni.jpg" width="300" height="200" /></td>
-		    <td width="193px" style="font-size: 14px;text-align:center;vertical-align:text-top"	>
-		    <p></p>
-		    <p></p>
-		    <p></p>
-		    <p></p>
-		    <p></p>
+		    <td width="197px"><img src="http://angus.agricultorestalca.cl/elsembrador/Infosys_web/resources/images/logo_empresa.jpg" width="150" height="136" /></td>
+		    <td width="493px" style="font-size: 14px;text-align:center;vertical-align:text-top"	>
+		    <p>SOC COMERCIAL EL SEMBRADOR LIMITADA</p>
+		    <p>RUT:77.733.670-3</p>
+		    <p>Delicias Norte  531 Parral - Chile</p>
+		    <p>VENTA AL POR MENOR DE ARTICULOS DE FERRETERIA</p>
+		    <p>Fonos: (73)2 </p>
+		    <p>Correo Electronico : </p>
 		    </td>
 		    </td>
 		    <td width="210px" style="font-size: 20px;text-align:left;vertical-align:text-top"	>

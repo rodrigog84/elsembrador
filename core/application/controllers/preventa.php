@@ -554,13 +554,14 @@ class Preventa extends CI_Controller {
 		<table width="987px" height="602" border="0">
 		    </td>
 		  <tr>
-		  <td width="197px"><img src="http://angus.agricultorestalca.cl/vibrados_web/Infosys_web/resources/images/logo_empresa.jpg" width="150" height="136" /></td>
+		  <td width="197px"><img src="http://angus.agricultorestalca.cl/elsembrador/Infosys_web/resources/images/logo_empresa.jpg" width="150" height="136" /></td>
 		    <td width="493px" style="font-size: 14px;text-align:center;vertical-align:text-top"	>
-		    <p>VIBRADOS CHILE LTDA.</p>
-		    <p>RUT:77.748.100-2</p>
-		    <p>Cienfuegos # 1595 San Javier - Chile</p>
-		    <p>Fonos: (73)2 321100</p>
-		    <p>Correo Electronico : info@vibradoschile.cl</p>
+		    <p>SOC COMERCIAL EL SEMBRADOR LIMITADA</p>
+		    <p>RUT:77.733.670-3</p>
+		    <p>Delicias Norte  531 Parral - Chile</p>
+		    <p>VENTA AL POR MENOR DE ARTICULOS DE FERRETERIA</p>
+		    <p>Fonos: (73)2 </p>
+		    <p>Correo Electronico : </p>
 		    </td>
 		    <td width="296px" style="font-size: 16px;text-align:left;vertical-align:text-top"	>
 		          <p>PREVENTA N°: '.$codigo.'</p>
@@ -745,6 +746,7 @@ class Preventa extends CI_Controller {
 
 		$resp = array();
 		$idcliente = $this->input->post('idcliente');
+		$direccion = $this->input->post('direccion');
 		$numticket = $this->input->post('numeroticket');
 		$idtipo = $this->input->post('idtipo');
 		$idpago = $this->input->post('idpago');
@@ -762,6 +764,7 @@ class Preventa extends CI_Controller {
 
 		$agregaclient = array(
          'id_pago' => $idpago,
+         'direccion' => strtoupper($direccion),
     	);
 
     	$this->db->where('id', $idcliente);
