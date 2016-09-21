@@ -1505,7 +1505,7 @@ class Recaudacion extends CI_Controller {
 		<body>
 		<table width="987px" height="602" border="0">
 		  <tr>
-		    <td width="197px"><img src="http://angus.agricultorestalca.cl/elsembrador/Infosys_web/resources/images/logo_empresa.jpg" width="150" height="136" /></td>
+		   <td width="197px"><img src="http://angus.agricultorestalca.cl/elsembrador/Infosys_web/resources/images/logo_empresa.jpg" width="150" height="136" /></td>
 		    <td width="493px" style="font-size: 14px;text-align:center;vertical-align:text-top"	>
 		    <p>SOC COMERCIAL EL SEMBRADOR LIMITADA</p>
 		    <p>RUT:77.733.670-3</p>
@@ -1858,7 +1858,7 @@ class Recaudacion extends CI_Controller {
 		<body>
 		<table width="987px" height="602" border="0">
 		  <tr>
-		    <td width="197px"><img src="http://angus.agricultorestalca.cl/elsembrador/Infosys_web/resources/images/logo_empresa.jpg" width="150" height="136" /></td>
+		   <td width="197px"><img src="http://angus.agricultorestalca.cl/elsembrador/Infosys_web/resources/images/logo_empresa.jpg" width="150" height="136" /></td>
 		    <td width="493px" style="font-size: 14px;text-align:center;vertical-align:text-top"	>
 		    <p>SOC COMERCIAL EL SEMBRADOR LIMITADA</p>
 		    <p>RUT:77.733.670-3</p>
@@ -2152,6 +2152,113 @@ class Recaudacion extends CI_Controller {
 					$credito60dias = 0;
 				};
 				
+			};
+
+			if ($v['nom_documento']=="NOTAS DE CREDITO ELECTRONICAS"){
+				$tip = "N/C";
+
+				if ($v['desc_pago']=="CONTADO"){				
+					$boleta = $v['valor_pago'];
+					$chequealdia = 0;
+					$chequeafecha = 0;
+					$credito = 0;
+					$credito = 0;
+					$credito = 0;
+					$tarjetadebito = 0;
+					$tarjetacredito = 0;
+					$transferencia = 0;
+					$valevista = 0;
+					$credito30dias = 0;
+					$credito60dias = 0;
+				};
+				if ($v['desc_pago']=="CHEQUE AL DIA"){				
+					$chequealdia = $v['valor_pago'];
+					$boleta = 0;
+					$chequeafecha = 0;
+					$credito = 0;
+					$tarjetadebito = 0;
+					$tarjetacredito = 0;
+					$transferencia = 0;
+					$valevista = 0;
+					$credito30dias = 0;
+					$credito60dias = 0;
+				
+				};
+				if ($v['desc_pago']=="CHEQUE A FECHA"){				
+					$chequeafecha = $v['valor_pago'];
+					$chequealdia = 0;
+					$boleta = 0;
+					$credito = 0;
+					$tarjetadebito = 0;
+					$tarjetacredito = 0;
+					$transferencia = 0;
+					$valevista = 0;
+					$credito30dias = 0;
+					$credito60dias = 0;
+				
+				};
+				if ($v['desc_pago']=="CREDITO 30 DIAS"){				
+					$credito30dias = $v['valor_pago'];
+					$chequealdia = 0;
+					$chequeafecha = 0;
+					$boleta = 0;
+					$tarjetadebito = 0;
+					$tarjetacredito = 0;
+					$transferencia = 0;
+					$valevista = 0;
+					$credito = 0;
+					$credito60dias = 0;
+				
+				};
+				if ($v['desc_pago']=="CREDITO"){				
+					$credito = $v['valor_pago'];
+					$chequealdia = 0;
+					$chequeafecha = 0;
+					$boleta = 0;
+					$tarjetadebito = 0;
+					$tarjetacredito = 0;
+					$transferencia = 0;
+					$valevista = 0;
+					$credito30dias = 0;
+					$credito60dias = 0;
+				};
+				
+				if ($v['desc_pago']=="TARJETA DEBITO"){				
+					$tarjetadebito = $v['valor_pago'];
+					$chequealdia = 0;
+					$chequeafecha = 0;
+					$boleta = 0;
+					$credito = 0;
+					$tarjetacredito = 0;
+					$transferencia = 0;
+					$valevista = 0;
+					$credito30dias = 0;
+					$credito60dias = 0;
+				};
+				if ($v['desc_pago']=="TARJETA CREDITO"){				
+					$tarjetacredito = $v['valor_pago'];
+					$chequealdia = 0;
+					$chequeafecha = 0;
+					$boleta = 0;
+					$tarjetadebito = 0;
+					$credito = 0;
+					$transferencia = 0;
+					$valevista = 0;
+					$credito30dias = 0;
+					$credito60dias = 0;
+				};
+				if ($v['desc_pago']=="TRANSFERENCIA BANCARIA"){				
+					$transferencia = $v['valor_pago'];
+					$chequealdia = 0;
+					$chequeafecha = 0;
+					$boleta = 0;
+					$tarjetadebito = 0;
+					$tarjetacredito = 0;
+					$credito = 0;
+					$valevista = 0;
+					$credito30dias = 0;
+					$credito60dias = 0;
+				};
 			};
 
 			if ($v['nom_documento']=="GUIA DE DESPACHO ELECTRONICA"){
@@ -2549,7 +2656,7 @@ class Recaudacion extends CI_Controller {
 		<body>
 		<table width="987px" height="602" border="0">
 		  <tr>
-		    <td width="197px"><img src="http://angus.agricultorestalca.cl/elsembrador/Infosys_web/resources/images/logo_empresa.jpg" width="150" height="136" /></td>
+		   <td width="197px"><img src="http://angus.agricultorestalca.cl/elsembrador/Infosys_web/resources/images/logo_empresa.jpg" width="150" height="136" /></td>
 		    <td width="493px" style="font-size: 14px;text-align:center;vertical-align:text-top"	>
 		    <p>SOC COMERCIAL EL SEMBRADOR LIMITADA</p>
 		    <p>RUT:77.733.670-3</p>
@@ -2629,6 +2736,9 @@ class Recaudacion extends CI_Controller {
 				};
 				if ($v['nom_documento']=="GUIA DE DESPACHO ELECTRONICA"){
 				$tip = "G/D";
+				};
+				if ($v['nom_documento']=="NOTAS DE CREDITO ELECTRONICAS"){
+				$tip = "N/C";
 				};
 
 				$boleta = $v['contado'];
