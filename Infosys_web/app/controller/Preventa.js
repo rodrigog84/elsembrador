@@ -280,9 +280,9 @@ Ext.define('Infosys_web.controller.Preventa', {
             'autorizacion3 button[action=autoriza3]': {
                 click: this.autorizaprecios2
             },
-            'preventaingresar #tipoVendedorId': {
+            /*'preventaingresar #tipoVendedorId': {
                 select: this.autorizavendedor
-            },
+            },*/
             'autorizacion2 button[action=autoriza1]': {
                 click: this.autorizaprecios2
             },
@@ -2624,7 +2624,13 @@ Ext.define('Infosys_web.controller.Preventa', {
         var idpago = viewIngresa.down('#tipocondpagoId').getValue();
         var vender = viewIngresa.down('#tipoVendedorId').getValue();
         var direccion = viewIngresa.down('#direccionId').getValue();
-                
+        var giro = viewIngresa.down('#giroId').getValue();
+
+        if(!giro){
+            Ext.Msg.alert('Seleccione Giro');
+            return;   
+        }
+
         if(!vender){
             Ext.Msg.alert('Seleccione Vendedor');
             return;   
@@ -2668,6 +2674,7 @@ Ext.define('Infosys_web.controller.Preventa', {
                 observa: observa,
                 idtipo : idtipo,
                 idpago : idpago,
+                giro: giro,
                 numeroticket : numeroticket,
                 fechapreventa : fechapreventa,
                 descuento : viewIngresa.down('#descuentovalorId').getValue(),

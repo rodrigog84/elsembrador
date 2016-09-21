@@ -761,10 +761,12 @@ class Preventa extends CI_Controller {
 		$fafecto = $this->input->post('afecto');
 		$ftotal = $this->input->post('total');
 		$observa = $this->input->post('observa');
+		$giro = $this->input->post('giro');
 
 		$agregaclient = array(
          'id_pago' => $idpago,
          'direccion' => strtoupper($direccion),
+         'id_giro' => $giro,
     	);
 
     	$this->db->where('id', $idcliente);
